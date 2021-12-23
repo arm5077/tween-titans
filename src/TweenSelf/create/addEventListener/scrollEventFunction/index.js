@@ -1,11 +1,18 @@
+import interpolateStyles from './interpolateStyles';
+import getPercentage from './getPercentage';
+
 const scrollEventFunction = (opts) => {
   const {
     target,
     waypoints,
     margin,
+    targetY,
+    viewportHeight,
   } = opts;
 
-  console.log(window.scrollY);
+  const percentage = getPercentage({ margin, viewportHeight, targetY });
+  interpolateStyles({ waypoints, percentage, target });
+  console.log(percentage);
 };
 
 export default scrollEventFunction;

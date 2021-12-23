@@ -1,10 +1,18 @@
 import { throttle } from 'lodash';
 import THROTTLE_THRESHOLD from 'Constants/main';
+import getPositions from 'Common/getPositions';
 import scrollEventFunction from './scrollEventFunction';
 
 const addEventListener = (opts) => {
+  const { target } = opts;
+  const { targetY, viewportHeight } = getPositions(target);
+
   const throttledFunction = throttle(
-    () => scrollEventFunction(opts),
+    () => scrollEventFunction({
+      ...opts,
+      targetY,
+      viewportHeight,
+    }),
     THROTTLE_THRESHOLD,
   );
 

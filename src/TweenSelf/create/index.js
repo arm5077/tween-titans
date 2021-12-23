@@ -4,11 +4,13 @@ import destroy from './destroy';
 const create = (opts = {}) => {
   const {
     target,
-    waypoints,
-    margin,
+    waypoints = [],
+    margin = {},
   } = opts;
 
-  const event = addEventListener(opts);
+  const event = addEventListener({
+    target, waypoints, margin,
+  });
 
   return {
     event,
