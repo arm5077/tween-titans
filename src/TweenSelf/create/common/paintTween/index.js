@@ -2,7 +2,7 @@ import interpolateStyles from './interpolateStyles';
 import getPercentage from './getPercentage';
 import applyStyles from './applyStyles';
 
-const scrollEventFunction = (opts) => {
+const paintTween = (opts) => {
   const {
     target,
     waypoints,
@@ -16,4 +16,4 @@ const scrollEventFunction = (opts) => {
   applyStyles({ target, style });
 };
 
-export default scrollEventFunction;
+export default paintTween;
