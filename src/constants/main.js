@@ -1,1 +1,3 @@
-export const THROTTLE_THRESHOLD = 50;
+const THROTTLE_THRESHOLD = 20;
+
+export default THROTTLE_THRESHOLD;
