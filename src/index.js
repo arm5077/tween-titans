@@ -1,3 +1,7 @@
 import TweenSelf from './TweenSelf';
+import TweenWaypoints from './TweenWaypoints';
 
-export default TweenSelf;
+export {
+  TweenSelf,
+  TweenWaypoints,
+};

@@ -1,4 +1,6 @@
-const getPercentage = ({
+import bounds from '../utils/bounds';
+
+const TweenSelf = ({
   margin,
   targetY,
   viewportHeight,
@@ -9,16 +11,9 @@ const getPercentage = ({
   const runway = viewportHeight + top + bottom;
   const rawPercentage = baselineY / runway;
 
-  let percentage;
-  if (rawPercentage < 0) {
-    percentage = 0;
-  } else if (rawPercentage > 1) {
-    percentage = 1;
-  } else {
-    percentage = rawPercentage;
-  }
+  const percentage = bounds(rawPercentage);
 
   return percentage;
 };
 
-export default getPercentage;
+export default TweenSelf;

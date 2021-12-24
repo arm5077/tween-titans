@@ -5,14 +5,13 @@ import paintTween from 'Common/paintTween';
 
 const addScrollListener = (opts) => {
   const { target } = opts;
-  const { targetY, viewportHeight } = getPositions(target);
+  const { viewportHeight } = getPositions(target);
 
   const throttledFunction = throttle(
     () => paintTween({
       ...opts,
-      targetY,
       viewportHeight,
-      mode: 'TweenSelf',
+      mode: 'TweenWaypoints',
     }),
     SCROLL_THROTTLE_THRESHOLD,
   );

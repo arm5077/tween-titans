@@ -1,4 +1,4 @@
-import removeListener from '../removeListener';
+import removeListener from 'Common/removeListener';
 import addScrollListener from '../addScrollListener';
 import paint from '../paint';
 
@@ -7,6 +7,7 @@ const refresh = ({
   target,
   waypoints,
   margin,
+  mode,
 }) => {
   const { scrollFunction } = events;
   removeListener('scroll', scrollFunction);
@@ -15,12 +16,14 @@ const refresh = ({
     target,
     waypoints,
     margin,
+    mode,
   });
 
   paint({
     target,
     waypoints,
     margin,
+    mode,
   });
 
   events.update('scrollFunction', newEvent);

@@ -4,6 +4,7 @@ import applyStyles from './applyStyles';
 
 const paintTween = (opts) => {
   const {
+    mode,
     target,
     waypoints,
     margin,
@@ -11,8 +12,12 @@ const paintTween = (opts) => {
     viewportHeight,
   } = opts;
 
-  const percentage = getPercentage({ margin, viewportHeight, targetY });
+  const percentage = getPercentage({
+    mode, margin, viewportHeight, targetY, waypoints,
+  });
+
   const style = interpolateStyles({ waypoints, percentage, target });
+
   applyStyles({ target, style });
 };
 

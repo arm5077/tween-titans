@@ -1,8 +1,8 @@
+import normalizeWaypoints from 'Common/normalizeWaypoints';
+import events from 'Common/events';
+import removeListener from 'Common/removeListener';
 import addScrollListener from './addScrollListener';
 import addResizeListener from './addResizeListener';
-import normalizeWaypoints from './common/normalizeWaypoints';
-import removeListener from './removeListener';
-import events from './data/events';
 import paint from './paint';
 
 const create = (opts = {}) => {
