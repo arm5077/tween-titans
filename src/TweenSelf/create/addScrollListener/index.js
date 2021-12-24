@@ -1,9 +1,9 @@
 import { throttle } from 'lodash';
-import THROTTLE_THRESHOLD from 'Constants/main';
+import SCROLL_THROTTLE_THRESHOLD from 'Constants/main';
 import getPositions from 'Common/getPositions';
 import paintTween from 'Src/TweenSelf/create/common/paintTween';
 
-const addEventListener = (opts) => {
+const addScrollListener = (opts) => {
   const { target } = opts;
   const { targetY, viewportHeight } = getPositions(target);
 
@@ -13,14 +13,12 @@ const addEventListener = (opts) => {
       targetY,
       viewportHeight,
     }),
-    THROTTLE_THRESHOLD,
+    SCROLL_THROTTLE_THRESHOLD,
   );
 
   window.addEventListener('scroll', throttledFunction);
 
-  return {
-    function: throttledFunction,
-  };
+  return throttledFunction;
 };
 
-export default addEventListener;
+export default addScrollListener;

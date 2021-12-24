@@ -1,6 +1,8 @@
-import addEventListener from './addEventListener';
+import addScrollListener from './addScrollListener';
+import addResizeListener from './addResizeListener';
 import normalizeWaypoints from './common/normalizeWaypoints';
-import destroy from './destroy';
+import removeListener from './removeListener';
+import events from './data/events';
 import paint from './paint';
 
 const create = (opts = {}) => {
@@ -12,10 +14,17 @@ const create = (opts = {}) => {
 
   const normalizedWaypoints = normalizeWaypoints(waypoints);
 
-  const event = addEventListener({
+  events.scrollFunction = addScrollListener({
     target,
     waypoints: normalizedWaypoints,
     margin,
+  });
+
+  events.resizeFunction = addResizeListener({
+    target,
+    waypoints: normalizedWaypoints,
+    margin,
+    events,
   });
 
   const firstPaint = () => {
@@ -29,9 +38,9 @@ const create = (opts = {}) => {
   firstPaint();
 
   return {
-    event,
     destroy: () => {
-      destroy(event.function);
+      removeListener('scroll', events.scrollFunction);
+      removeListener('scroll', events.resizeFunction);
     },
     paint: firstPaint,
   };
