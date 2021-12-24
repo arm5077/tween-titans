@@ -15,23 +15,20 @@ const create = (opts = {}) => {
   const normalizedWaypoints = normalizeWaypoints(waypoints);
 
   events.scrollFunction = addScrollListener({
-    target,
+    ...opts,
     waypoints: normalizedWaypoints,
-    margin,
   });
 
   events.resizeFunction = addResizeListener({
-    target,
+    ...opts,
     waypoints: normalizedWaypoints,
-    margin,
     events,
   });
 
   const firstPaint = () => {
     paint({
-      target,
+      ...opts,
       waypoints: normalizedWaypoints,
-      margin,
     });
   };
 
