@@ -11,9 +11,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      Constants: path.resolve(__dirname, 'src/constants'),
-      Common: path.resolve(__dirname, 'src/common'),
-      Src: path.resolve(__dirname, 'src'),
+      Constants: path.resolve(__dirname, './src/constants'),
+      Common: path.resolve(__dirname, './src/common'),
+      Src: path.resolve(__dirname, './src'),
     },
   },
 };

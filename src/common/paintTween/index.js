@@ -16,9 +16,10 @@ const paintTween = (opts) => {
     mode, margin, viewportHeight, targetY, waypoints,
   });
 
-  const style = interpolateStyles({ waypoints, percentage, target });
-
-  applyStyles({ target, style });
+  if (percentage >= 0 && percentage <= 1) {
+    const style = interpolateStyles({ waypoints, percentage, target });
+    applyStyles({ target, style });
+  }
 };
 
 export default paintTween;

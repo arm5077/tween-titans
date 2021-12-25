@@ -1,14 +1,15 @@
 import events from 'Common/events';
+import removeListener from 'Common/removeListener';
 import addScrollListener from './addScrollListener';
 import addResizeListener from './addResizeListener';
 import calculateWaypoints from './calculateWaypoints';
 import paint from './paint';
+import reset from './reset';
 
 const create = (opts = {}) => {
   const {
-    target,
+
     waypoints,
-    margin,
   } = opts;
 
   const normalizedWaypoints = calculateWaypoints(waypoints);
@@ -31,6 +32,20 @@ const create = (opts = {}) => {
     });
   };
   firstPaint();
+
+  return {
+    destroy: () => {
+      removeListener('scroll', events.scrollFunction);
+      removeListener('scroll', events.resizeFunction);
+    },
+    paint: firstPaint,
+    reset: () => {
+      reset({
+        ...opts,
+        events,
+      });
+    },
+  };
 };
 
 export default create;

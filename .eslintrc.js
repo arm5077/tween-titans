@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   env: {
     browser: true,
@@ -18,5 +20,16 @@ module.exports = {
         js: 'never',
       },
     ],
+  },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['Constants', path.resolve(__dirname, './src/constants')],
+          ['Common', path.resolve(__dirname, './src/common')],
+          ['Src', path.resolve(__dirname, './src')],
+        ],
+      },
+    },
   },
 };
