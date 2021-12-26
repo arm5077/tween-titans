@@ -15,7 +15,8 @@ _Options:_
 * `waypoints` (Array of `waypoint` objects): The styles the element should transition through during the tween.
   * `percent` (number): The percentage in the scroll experience where the styles should be fully transitioned.
   * `style`: (Object): A set of CSS properties in Javascript style indicating what the element should look like.
+* `stepFunction` (function(percent)): A function that executes every time the tween updates.
 
 
 **Tween.paint()**
-Updates the tween to the right interpolated state based on the current scroll. 
+Updates the tween to the interpolated state based on the current scroll.

@@ -10,6 +10,7 @@ const paintTween = (opts) => {
     margin,
     targetY,
     viewportHeight,
+    stepFunction,
   } = opts;
 
   const percentage = getPercentage({
@@ -19,6 +20,9 @@ const paintTween = (opts) => {
   if (percentage >= 0 && percentage <= 1) {
     const style = interpolateStyles({ waypoints, percentage, target });
     applyStyles({ target, style });
+    if (stepFunction) {
+      stepFunction(percentage);
+    }
   }
 };
 
