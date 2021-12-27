@@ -1,5 +1,4 @@
 import normalizeWaypoints from 'Common/normalizeWaypoints';
-// import events from 'Common/events';
 import removeListener from 'Common/removeListener';
 import addScrollListener from './addScrollListener';
 import addResizeListener from './addResizeListener';
