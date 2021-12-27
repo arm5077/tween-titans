@@ -1,7 +1,9 @@
 import getPositions from 'Common/getPositions';
 import paintTween from 'Common/paintTween';
 
-const paint = ({ target, waypoints, margin }) => {
+const paint = ({
+  target, waypoints, margin, stepFunction,
+}) => {
   const { targetY, viewportHeight } = getPositions(target);
   paintTween({
     target,
@@ -9,6 +11,7 @@ const paint = ({ target, waypoints, margin }) => {
     margin,
     targetY,
     viewportHeight,
+    stepFunction,
     mode: 'TweenSelf',
   });
 };

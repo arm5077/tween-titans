@@ -7,6 +7,7 @@ const refresh = ({
   margin,
   addScrollListener,
   paint,
+  stepFunction,
 }) => {
   const { scrollFunction } = events;
   removeListener('scroll', scrollFunction);
@@ -15,12 +16,14 @@ const refresh = ({
     target,
     waypoints,
     margin,
+    stepFunction,
   });
 
   paint({
     target,
     waypoints,
     margin,
+    stepFunction,
   });
 
   events.update('scrollFunction', newEvent);
