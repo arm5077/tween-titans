@@ -1,5 +1,5 @@
 import normalizeWaypoints from 'Common/normalizeWaypoints';
-import events from 'Common/events';
+// import events from 'Common/events';
 import removeListener from 'Common/removeListener';
 import addScrollListener from './addScrollListener';
 import addResizeListener from './addResizeListener';
@@ -12,6 +12,12 @@ const create = (opts = {}) => {
   } = opts;
 
   const normalizedWaypoints = normalizeWaypoints(waypoints);
+
+  const events = {
+    update(key, value) {
+      this[key] = value;
+    },
+  };
 
   events.scrollFunction = addScrollListener({
     ...opts,
@@ -36,7 +42,7 @@ const create = (opts = {}) => {
   return {
     destroy: () => {
       removeListener('scroll', events.scrollFunction);
-      removeListener('scroll', events.resizeFunction);
+      removeListener('resize', events.resizeFunction);
     },
     paint: firstPaint,
     reset: () => {

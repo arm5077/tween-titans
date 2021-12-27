@@ -1,4 +1,3 @@
-import events from 'Common/events';
 import removeListener from 'Common/removeListener';
 import addScrollListener from './addScrollListener';
 import addResizeListener from './addResizeListener';
@@ -8,9 +7,14 @@ import reset from './reset';
 
 const create = (opts = {}) => {
   const {
-
     waypoints,
   } = opts;
+
+  const events = {
+    update(key, value) {
+      this[key] = value;
+    },
+  };
 
   const normalizedWaypoints = calculateWaypoints(waypoints);
 
@@ -36,7 +40,7 @@ const create = (opts = {}) => {
   return {
     destroy: () => {
       removeListener('scroll', events.scrollFunction);
-      removeListener('scroll', events.resizeFunction);
+      removeListener('resize', events.resizeFunction);
     },
     paint: firstPaint,
     reset: () => {
