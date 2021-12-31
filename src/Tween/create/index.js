@@ -2,7 +2,7 @@ import addResizeListener from 'Common/addListener/resize';
 import removeListener from 'Common/removeListener';
 import refresh from 'Common/refresh';
 
-const create = (opts = {}) => {
+const create = (mode, opts = {}) => {
   const {
     target,
     waypoints = [],
@@ -23,7 +23,7 @@ const create = (opts = {}) => {
   };
 
   const refreshTween = () => refresh({
-    mode: 'TweenWaypoints',
+    mode,
     store,
     target,
     waypoints,
@@ -33,7 +33,7 @@ const create = (opts = {}) => {
   refreshTween();
 
   store.resizeFunction = addResizeListener({
-    mode: 'TweenWaypoints',
+    mode,
     target,
     waypoints,
     margin,

@@ -1,6 +1,6 @@
 import getPositions from 'Common/getPositions';
 import sortAsc from 'Common/sortAsc';
-import normalizeWaypoints from 'Common/normalizeWaypoints';
+import normalizeWaypoints from 'Common/normalize';
 
 const calculateWaypoints = (waypoints) => {
   const pixelWaypoints = waypoints.map((waypoint) => {

@@ -1,32 +1,52 @@
 import removeListener from 'Common/removeListener';
+import paintTween from 'Common/paintTween';
+import getPositions from 'Common/getPositions';
+import normalize from 'Common/normalize';
+import convertNodesToPercents from 'Common/normalize/convertNodesToPercents';
+import addScrollListener from 'Common/addListener/scroll';
 
-const refresh = ({
-  events,
-  target,
-  waypoints,
-  margin,
-  addScrollListener,
-  paint,
-  stepFunction,
-}) => {
-  const { scrollFunction } = events;
-  removeListener('scroll', scrollFunction);
+const refresh = (opts) => {
+  const {
+    mode,
+    store,
+    target,
+    waypoints: rawWaypoints,
+    margin,
+    stepFunction,
+  } = opts;
+
+  const { scrollFunction } = store;
+  if (scrollFunction) {
+    removeListener('scroll', scrollFunction);
+  }
+
+  const { targetY, viewportHeight } = getPositions(target);
+
+  const waypoints = mode === 'TweenSelf'
+    ? normalize(rawWaypoints)
+    : convertNodesToPercents(rawWaypoints);
 
   const newEvent = addScrollListener({
+    mode,
     target,
     waypoints,
     margin,
     stepFunction,
+    store,
   });
 
-  paint({
+  paintTween({
+    mode,
     target,
     waypoints,
     margin,
+    targetY,
+    viewportHeight,
     stepFunction,
+    store,
   });
 
-  events.update('scrollFunction', newEvent);
+  store.update('scrollFunction', newEvent);
 };
 
 export default refresh;
