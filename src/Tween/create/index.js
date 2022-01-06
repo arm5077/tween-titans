@@ -6,8 +6,9 @@ const create = (mode, opts = {}) => {
   const {
     target,
     waypoints = [],
-    margin = {},
+    margin = 0,
     stepFunction,
+    applyStyles = true,
   } = opts;
 
   if (!target) {
@@ -29,6 +30,7 @@ const create = (mode, opts = {}) => {
     waypoints,
     margin,
     stepFunction,
+    applyStyles,
   });
   refreshTween();
 

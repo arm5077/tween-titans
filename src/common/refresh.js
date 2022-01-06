@@ -13,6 +13,7 @@ const refresh = (opts) => {
     waypoints: rawWaypoints,
     margin,
     stepFunction,
+    applyStyles,
   } = opts;
 
   const { scrollFunction } = store;
@@ -33,6 +34,7 @@ const refresh = (opts) => {
     margin,
     stepFunction,
     store,
+    applyStyles,
   });
 
   paintTween({
@@ -44,6 +46,7 @@ const refresh = (opts) => {
     viewportHeight,
     stepFunction,
     store,
+    applyStyles,
   });
 
   store.update('scrollFunction', newEvent);

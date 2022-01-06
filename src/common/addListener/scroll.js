@@ -11,6 +11,7 @@ const addScrollListener = (opts) => {
     margin,
     stepFunction,
     store,
+    applyStyles,
   } = opts;
 
   const { targetY, viewportHeight } = getPositions(target);
@@ -25,6 +26,7 @@ const addScrollListener = (opts) => {
       store,
       targetY,
       viewportHeight,
+      applyStyles,
     }),
     SCROLL_THROTTLE_THRESHOLD,
   );

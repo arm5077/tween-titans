@@ -1,6 +1,7 @@
 import interpolateStyles from './interpolateStyles';
 import getPercentage from './getPercentage';
 import applyStyles from './applyStyles';
+import bounds from './utils/bounds';
 
 const paintTween = (opts) => {
   const {
@@ -12,18 +13,22 @@ const paintTween = (opts) => {
     viewportHeight,
     stepFunction,
     store,
+    applyStyles: applyStylesFlag,
   } = opts;
 
-  const percentage = getPercentage({
+  const rawPercentage = getPercentage({
     mode, margin, viewportHeight, targetY, waypoints,
   });
 
-  if (percentage >= 0 && percentage <= 1) {
+  if (rawPercentage >= -0.3 && rawPercentage <= 1.3) {
+    const percentage = bounds(rawPercentage);
     const style = interpolateStyles({ waypoints, percentage, target });
     store.update('style', style);
-    applyStyles({ target, style });
+    if (applyStylesFlag) {
+      applyStyles({ target, style });
+    }
     if (stepFunction) {
-      stepFunction(percentage);
+      stepFunction(percentage, style);
     }
   }
 };
