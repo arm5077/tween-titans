@@ -4,6 +4,7 @@ import getPositions from 'Common/getPositions';
 import normalize from 'Common/normalize';
 import convertNodesToPercents from 'Common/normalize/convertNodesToPercents';
 import addScrollListener from 'Common/addListener/scroll';
+import createInterpolators from './createInterpolators';
 
 const refresh = (opts) => {
   const {
@@ -23,9 +24,11 @@ const refresh = (opts) => {
 
   const { targetY, viewportHeight } = getPositions(target);
 
-  const waypoints = mode === 'TweenSelf'
+  const normalizedWaypoints = mode === 'TweenSelf'
     ? normalize(rawWaypoints)
     : convertNodesToPercents(rawWaypoints);
+
+  const waypoints = createInterpolators(normalizedWaypoints);
 
   const newEvent = addScrollListener({
     mode,

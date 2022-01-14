@@ -11,9 +11,12 @@ const create = (mode, opts = {}) => {
     applyStyles = true,
   } = opts;
 
-  if (!target) {
+  if (!target || waypoints.length === 0) {
     return {
       destroy: () => {},
+      store: {
+        style: {},
+      },
     };
   }
 

@@ -22,13 +22,15 @@ const paintTween = (opts) => {
 
   if (rawPercentage >= -0.3 && rawPercentage <= 1.3) {
     const percentage = bounds(rawPercentage);
-    const style = interpolateStyles({ waypoints, percentage, target });
+    const style = interpolateStyles({ waypoints, percentage });
+
     store.update('style', style);
     if (applyStylesFlag) {
       applyStyles({ target, style });
     }
+
     if (stepFunction) {
-      stepFunction(percentage, style);
+      stepFunction(percentage, style, target);
     }
   }
 };
